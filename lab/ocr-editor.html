@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Turikale Print - OCR Image Editor</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="../public/Logo-Icon-TurikalePrint.jpg" />
+  <script>tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary": "#136dec", "background-dark": "#101822", "accent-dark": "#162c34", "navy-muted": "#1a2e35", "navy-border": "#20404b" }, fontFamily: { display: ["Inter", "sans-serif"] }, borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" } } } }</script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #20404b;
+      border-radius: 10px
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #136dec
+    }
+
+    #img-wrapper {
+      position: relative;
+      display: inline-block;
+      line-height: 0
+    }
+
+    #img-preview {
+      display: block;
+      max-width: none
+    }
+
+    /* --- Text overlay boxes --- */
+    .ov {
+      position: absolute;
+      box-sizing: border-box;
+      cursor: default;
+      outline: none;
+      white-space: pre-wrap;
+      overflow: hidden;
+      line-height: 1.15;
+      padding: 0 1px;
+      color: transparent;
+      background: transparent;
+      border: 1.5px dashed transparent;
+      border-radius: 2px;
+      transition: border-color .15s, background .15s, color .15s;
+      z-index: 10;
+    }
+
+    /* Edit mode – show borders */
+    .edit-on .ov {
+      border-color: rgba(19, 109, 236, .25);
+      color: rgba(0, 0, 0, .08)
+    }
+
+    .edit-on .ov:hover {
+      border-color: rgba(19, 109, 236, .6);
+      background: rgba(19, 109, 236, .08);
+      color: rgba(0, 0, 0, .5);
+      cursor: text
+    }
+
+    /* Modified */
+    .edit-on .ov.mod {
+      border-color: rgba(16, 185, 129, .5);
+      background: rgba(16, 185, 129, .08)
+    }
+
+    /* Focused/editing */
+    .ov:focus {
+      border-color: #136dec !important;
+      background: rgba(255, 255, 255, .97) !important;
+      color: #111 !important;
+      box-shadow: 0 0 0 2px rgba(19, 109, 236, .35);
+      z-index: 30;
+      overflow: visible;
+      cursor: text
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .spin {
+      animation: spin 1s linear infinite
+    }
+
+    @keyframes pglow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 5px rgba(19, 109, 236, .4)
+      }
+
+      50% {
+        box-shadow: 0 0 14px rgba(19, 109, 236, .8)
+      }
+    }
+
+    .pglow {
+      animation: pglow 1.5s ease-in-out infinite
+    }
+
+    #drop-zone.dov {
+      border-color: #136dec;
+      background: rgba(19, 109, 236, .07)
+    }
+
+    /* === UNDER DEVELOPMENT OVERLAY === */
+    .dev-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+    }
+
+    .dev-box {
+      text-align: center;
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px 50px;
+      border-radius: 16px;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0.6;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-[#0b1120] text-slate-100 font-display min-h-screen flex p-4 md:p-6 gap-6 relative">
+  
+    <div class="fixed inset-0 pointer-events-none z-0" style="background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+    <div id="main-content" class="flex flex-1 w-full h-[calc(100vh-3rem)]">
+        <aside class="w-[280px] flex-shrink-0 bg-[#0f172a] rounded-2xl border border-[#1e293b] flex flex-col shadow-2xl relative z-10 overflow-hidden mr-6">
+            <div class="p-6 border-b border-[#1e293b] flex items-center gap-4">
+                 <div class="size-10 rounded-lg bg-primary flex shrink-0 items-center justify-center shadow-[0_0_15px_rgba(19,109,236,0.5)]">
+                     <span class="material-symbols-outlined text-white">memory</span>
+                 </div>
+                 <div>
+                     <div class="text-sm font-bold text-white tracking-wider">Turikale Print</div>
+                     <div class="text-[10px] text-slate-400 uppercase tracking-widest">Dashboard Console</div>
+                 </div>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+                <a href="dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#131c2a] transition-all">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span class="uppercase tracking-wider text-xs">Dashboard</span>
+                </a>
+                <a href="pas-foto.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#131c2a] transition-all">
+                    <span class="material-symbols-outlined">account_box</span>
+                    <span class="uppercase tracking-wider text-xs">Photo Printing</span>
+                </a>
+                <a href="ocr-editor.html" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary/10 border border-primary/30 text-primary font-bold shadow-[inset_4px_0_0_#136dec] transition-all">
+                    <span class="material-symbols-outlined">description</span>
+                    <span class="uppercase tracking-wider text-xs">PDF OCR Editor</span>
+                </a>
+                <a href="edit-idcard.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#131c2a] transition-all">
+                    <span class="material-symbols-outlined">badge</span>
+                    <span class="uppercase tracking-wider text-xs">ID Card Editor</span>
+                </a>
+            </nav>
+        </aside>
+        
+        <main class="flex-1 flex flex-col relative z-10 overflow-hidden bg-transparent">
+            <!-- Enhanced Header inside Main -->
+            <header class="flex items-center justify-between mb-6 shrink-0 bg-[#0f172a] p-4 rounded-2xl border border-[#1e293b] shadow-2xl">
+                <div class="flex-1 max-w-md">
+                    <div class="text-sm font-bold text-white tracking-wider pl-2">OCR Image Editor</div>
+                </div>
+                <div class="flex items-center gap-4">
+
+                <div class="flex gap-2">
+                    <button id="btn-edit-mode"
+                      class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold border border-[#1e293b] bg-[#131c2a] text-slate-400 hover:border-primary/50 hover:text-primary transition-all">
+                      <span class="material-symbols-outlined text-[18px]">edit</span><span id="em-label">Edit Mode: OFF</span>
+                    </button>
+                    <button id="btn-new"
+                      class="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold border border-[#1e293b] bg-[#131c2a] text-slate-300 hover:border-primary/40 transition-all">
+                      <span class="material-symbols-outlined text-[18px]">add_photo_alternate</span>New
+                    </button>
+                </div>
+
+                    <div class="h-8 w-px bg-[#1e293b] mx-2"></div>
+                    <div class="flex items-center gap-3">
+                        <div class="text-right hidden md:block">
+                            <div class="text-xs font-bold text-white uppercase tracking-wider">Admin User</div>
+                            <div class="text-[10px] text-emerald-400 font-mono">ONLINE</div>
+                        </div>
+                        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-10 border-2 border-primary shadow-[0_0_10px_rgba(19,109,236,0.3)]" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZ-K8x1wHelW4nre_5D1rBTlS8YtZEozzGk34agMaE2b5o0h43A37KrdVoM2y0ld0wEYAEykeMUH_L30jHoEsIKrVPpnVexFM9mfyPBR9OoXq_6uFCa6GZOjSIK3SJD3r4QrvRisJlZoy915OBBZxwKO1WBAsawE_-j6Om68rMTOoDgf00ASP66kKIQyM8tWX_OLFy66j8dXqdR7qGi7rLDE5yx_U0oRzJd1yaEbPGjCP8-1iQ6atf5R69GZ67vYfQ1kXCxjuN4g");'></div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="flex-1 overflow-hidden flex gap-6">
+
+
+        <!-- LEFT: IMAGE AREA -->
+        <div class="flex-1 flex flex-col overflow-hidden bg-[#0f172a] border border-[#1e293b] rounded-2xl shadow-xl">
+
+          <!-- Image toolbar -->
+          <div class="shrink-0 px-4 py-2 border-b border-[#1e293b] bg-[#131c2a]/50 flex items-center gap-2">
+            <button id="btn-zi" title="Zoom In"
+              class="p-1.5 rounded hover:bg-[#131c2a] text-slate-400 hover:text-slate-100 transition-colors"><span
+                class="material-symbols-outlined text-[20px]">zoom_in</span></button>
+            <span id="zoom-lbl" class="text-xs font-mono text-slate-500 w-10 text-center">100%</span>
+            <button id="btn-zo" title="Zoom Out"
+              class="p-1.5 rounded hover:bg-[#131c2a] text-slate-400 hover:text-slate-100 transition-colors"><span
+                class="material-symbols-outlined text-[20px]">zoom_out</span></button>
+            <button id="btn-zf" title="Fit to screen"
+              class="p-1.5 rounded hover:bg-[#131c2a] text-slate-400 hover:text-slate-100 transition-colors"><span
+                class="material-symbols-outlined text-[20px]">fit_screen</span></button>
+            <div class="w-px h-5 bg-navy-border mx-1"></div>
+            <div id="mod-ind" class="hidden items-center gap-1.5 text-xs text-emerald-400">
+              <span class="material-symbols-outlined text-[14px]">edit_note</span>
+              <span id="mod-cnt">0</span> edit(s) applied
+            </div>
+            <p id="edit-tip" class="text-xs text-slate-600 hidden"><span
+                class="material-symbols-outlined text-[14px] align-middle text-primary">lightbulb</span> Click any blue
+              box to edit text directly on the image</p>
+          </div>
+
+          <!-- Scrollable canvas -->
+          <div id="canvas-area" class="flex-1 overflow-auto bg-[#131c2a] flex items-start justify-center p-8">
+            <!-- Upload placeholder -->
+            <div id="ph" class="flex items-center justify-center w-full h-full min-h-[350px]">
+              <div id="drop-zone"
+                class="border-2 border-dashed border-[#1e293b] rounded-2xl p-16 text-center cursor-pointer transition-all hover:border-primary/50 group"
+                onclick="document.getElementById('fi').click()">
+                <div
+                  class="w-20 h-20 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-4xl text-primary">cloud_upload</span>
+                </div>
+                <h3 class="text-xl font-bold text-slate-200 mb-2">Upload Image to Edit</h3>
+                <p class="text-slate-500 text-sm mb-1">JPG · PNG · WEBP · BMP · TIFF</p>
+                <p class="text-slate-700 text-xs">Or paste with Ctrl+V</p>
+                <input type="file" id="fi" class="hidden"
+                  accept="image/png,image/jpeg,image/webp,image/bmp,image/tiff,image/gif">
+              </div>
+            </div>
+            <!-- Image + overlays -->
+            <div id="img-container" class="hidden origin-top-left">
+              <div id="img-wrapper">
+                <img id="img-preview" alt="Document" src="" />
+                <!-- .ov elements appended here -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: CONTROLS -->
+        <div class="w-80 flex-shrink-0 flex flex-col overflow-y-auto bg-[#0f172a] border border-[#1e293b] rounded-2xl shadow-xl">
+          <div class="p-5 space-y-5">
+
+            <!-- OCR Settings -->
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3">OCR Settings</p>
+              <div class="flex items-center gap-2 bg-[#131c2a] border border-[#1e293b] rounded-lg px-3 py-2 mb-3">
+                <span class="material-symbols-outlined text-primary text-[18px]">language</span>
+                <select id="ocr-lang"
+                  class="flex-1 bg-transparent border-none text-sm text-slate-200 focus:ring-0 outline-none cursor-pointer">
+                  <option value="ind+eng">Indonesia + English</option>
+                  <option value="ind">Indonesia</option>
+                  <option value="eng">English</option>
+                </select>
+              </div>
+              <button id="btn-ocr" disabled
+                class="w-full flex items-center justify-center gap-2 py-2.5 bg-primary text-white rounded-lg text-sm font-bold hover:bg-primary/90 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-primary/20">
+                <span class="material-symbols-outlined text-[18px]">document_scanner</span>Run OCR
+              </button>
+              <p class="text-center text-xs text-slate-700 mt-1.5">Shortcut: <kbd
+                  class="bg-[#131c2a] border border-[#1e293b] px-1 rounded text-[10px]">Ctrl+Enter</kbd></p>
+            </div>
+
+            <!-- Progress -->
+            <div id="prog-sec" class="hidden">
+              <div class="bg-[#131c2a] border border-[#1e293b] rounded-xl p-4">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="material-symbols-outlined spin text-primary">sync</span>
+                  <span id="prog-lbl" class="text-sm text-slate-300 flex-1">Initializing...</span>
+                  <span id="prog-pct" class="text-xs font-mono text-primary">0%</span>
+                </div>
+                <div class="h-1.5 bg-navy-border rounded-full overflow-hidden">
+                  <div id="prog-bar"
+                    class="h-full bg-gradient-to-r from-primary to-blue-400 rounded-full w-0 transition-all duration-200 pglow">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div id="stats-sec" class="hidden">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3">Recognition Results</p>
+              <div class="grid grid-cols-2 gap-2 mb-3">
+                <div class="bg-[#131c2a] border border-[#1e293b] rounded-lg p-3">
+                  <p class="text-[10px] text-slate-500 uppercase tracking-wide mb-1">Confidence</p>
+                  <p id="s-conf" class="text-xl font-black text-primary">—</p>
+                </div>
+                <div class="bg-[#131c2a] border border-[#1e293b] rounded-lg p-3">
+                  <p class="text-[10px] text-slate-500 uppercase tracking-wide mb-1">Lines</p>
+                  <p id="s-lines" class="text-xl font-black text-slate-100">—</p>
+                </div>
+                <div class="bg-[#131c2a] border border-[#1e293b] rounded-lg p-3">
+                  <p class="text-[10px] text-slate-500 uppercase tracking-wide mb-1">Words</p>
+                  <p id="s-words" class="text-xl font-black text-slate-100">—</p>
+                </div>
+                <div class="bg-[#131c2a] border border-[#1e293b] rounded-lg p-3">
+                  <p class="text-[10px] text-slate-500 uppercase tracking-wide mb-1">Modified</p>
+                  <p id="s-mod" class="text-xl font-black text-emerald-400">0</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Export -->
+            <div id="export-sec" class="hidden space-y-2">
+              <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3">Export</p>
+              <button id="btn-png"
+                class="w-full flex items-center gap-3 p-3 bg-primary/10 border border-primary/30 rounded-xl hover:bg-primary/20 hover:border-primary/50 transition-all group">
+                <div
+                  class="w-9 h-9 rounded-lg bg-primary/20 flex items-center justify-center shrink-0 group-hover:bg-primary/30 transition-colors">
+                  <span class="material-symbols-outlined text-primary text-xl">image</span>
+                </div>
+                <div class="text-left">
+                  <p class="text-sm font-bold text-slate-200">Save as PNG</p>
+                  <p class="text-xs text-slate-500">Edits burned into image</p>
+                </div>
+              </button>
+              <button id="btn-copy"
+                class="w-full flex items-center gap-3 p-3 bg-[#131c2a] border border-[#1e293b] rounded-xl hover:border-primary/40 transition-all group">
+                <div class="w-9 h-9 rounded-lg bg-navy-border flex items-center justify-center shrink-0">
+                  <span
+                    class="material-symbols-outlined text-slate-400 group-hover:text-primary text-xl transition-colors">content_copy</span>
+                </div>
+                <div class="text-left">
+                  <p class="text-sm font-bold text-slate-200">Copy All Text</p>
+                  <p class="text-xs text-slate-500">Raw OCR text to clipboard</p>
+                </div>
+              </button>
+            </div>
+
+            <!-- How it works -->
+            <div class="bg-[#131c2a]/30 border border-[#1e293b] rounded-xl p-4">
+              <p class="text-xs font-bold text-slate-500 mb-2 flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[14px] text-primary">tips_and_updates</span>Cara pakai
+              </p>
+              <ol class="text-xs text-slate-600 space-y-1 list-decimal list-inside">
+                <li>Upload gambar/foto dokumen</li>
+                <li>Klik <strong class="text-slate-500">Run OCR</strong> untuk ekstrak teks</li>
+                <li>Aktifkan <strong class="text-slate-500">Edit Mode</strong> lalu klik kotak biru</li>
+                <li>Edit teks langsung di atas gambar</li>
+                <li><strong class="text-slate-500">Save as PNG</strong> — perubahan masuk ke gambar</li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    
+            </div>
+        </main>
+    </div>
+
+
+  <!-- Toast -->
+  <div id="toast"
+    class="fixed bottom-6 right-6 hidden z-50 items-center gap-3 bg-[#131c2a] border border-[#1e293b] text-slate-100 px-4 py-3 rounded-xl shadow-2xl text-sm font-medium">
+    <span id="t-icon" class="material-symbols-outlined text-[20px] text-primary">check_circle</span>
+    <span id="t-msg"></span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script>
+    // ─── STATE ───────────────────────────────────────────────
+    let currentFile = null, nativeW = 0, nativeH = 0;
+    let ocrLines = [];   // [{text, bbox, original, modified, el}]
+    let isOCR = false, editMode = false, zoom = 1.0;
+    let worker = null;
+
+    // ─── ELEMENTS ────────────────────────────────────────────
+    const $ = id => document.getElementById(id);
+    const ph = $('ph');
+    const imgCont = $('img-container');
+    const imgWrap = $('img-wrapper');
+    const imgPrev = $('img-preview');
+    const btnOCR = $('btn-ocr');
+    const btnNew = $('btn-new');
+    const btnEM = $('btn-edit-mode');
+    const btnPNG = $('btn-png');
+    const btnCopy = $('btn-copy');
+    const btnZI = $('btn-zi');
+    const btnZO = $('btn-zo');
+    const btnZF = $('btn-zf');
+    const zoomLbl = $('zoom-lbl');
+    const progSec = $('prog-sec');
+    const progBar = $('prog-bar');
+    const progLbl = $('prog-lbl');
+    const progPct = $('prog-pct');
+    const statsSec = $('stats-sec');
+    const exportSec = $('export-sec');
+    const modInd = $('mod-ind');
+    const modCnt = $('mod-cnt');
+    const editTip = $('edit-tip');
+    const dropZone = $('drop-zone');
+    const fi = $('fi');
+
+    // ─── DRAG & DROP / PASTE ─────────────────────────────────
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dov'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dov'));
+    dropZone.addEventListener('drop', e => {
+      e.preventDefault(); dropZone.classList.remove('dov');
+      const f = e.dataTransfer.files[0];
+      if (f?.type.startsWith('image/')) handleFile(f);
+      else toast('Upload file gambar yang valid', 'error');
+    });
+    fi.addEventListener('change', e => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+    document.addEventListener('paste', e => {
+      const item = [...e.clipboardData.items].find(i => i.type.startsWith('image/'));
+      if (item) handleFile(item.getAsFile());
+    });
+
+    // ─── FILE HANDLING ────────────────────────────────────────
+    function handleFile(file) {
+      currentFile = file;
+      const url = URL.createObjectURL(file);
+      imgPrev.src = url;
+      imgPrev.onload = () => {
+        nativeW = imgPrev.naturalWidth;
+        nativeH = imgPrev.naturalHeight;
+        URL.revokeObjectURL(url);
+        fitToView();
+      };
+      ph.classList.add('hidden');
+      imgCont.classList.remove('hidden');
+      clearOverlays();
+      ocrLines = [];
+      btnOCR.disabled = false;
+      statsSec.classList.add('hidden');
+      exportSec.classList.add('hidden');
+      modInd.classList.add('hidden');
+    }
+
+    function clearOverlays() {
+      imgWrap.querySelectorAll('.ov').forEach(e => e.remove());
+    }
+
+    btnNew.addEventListener('click', () => {
+      currentFile = null; fi.value = '';
+      imgPrev.src = ''; clearOverlays(); ocrLines = [];
+      ph.classList.remove('hidden');
+      imgCont.classList.add('hidden');
+      statsSec.classList.add('hidden');
+      exportSec.classList.add('hidden');
+      modInd.classList.add('hidden');
+      editTip.classList.add('hidden');
+      btnOCR.disabled = true;
+      setEditMode(false);
+      zoom = 1.0; applyZoom();
+    });
+
+    // ─── EDIT MODE ────────────────────────────────────────────
+    btnEM.addEventListener('click', () => setEditMode(!editMode));
+
+    function setEditMode(on) {
+      editMode = on;
+      if (on) {
+        document.body.classList.add('edit-on');
+        btnEM.innerHTML = `<span class="material-symbols-outlined text-[18px]">edit_off</span><span id="em-label">Edit Mode: ON</span>`;
+        btnEM.className = 'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold border border-primary/60 bg-primary/10 text-primary transition-all';
+        editTip.classList.remove('hidden');
+      } else {
+        document.body.classList.remove('edit-on');
+        btnEM.innerHTML = `<span class="material-symbols-outlined text-[18px]">edit</span><span id="em-label">Edit Mode: OFF</span>`;
+        btnEM.className = 'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold border border-[#1e293b] bg-[#131c2a] text-slate-400 hover:border-primary/50 hover:text-primary transition-all';
+        editTip.classList.add('hidden');
+      }
+    }
+
+    // ─── ZOOM ─────────────────────────────────────────────────
+    btnZI.addEventListener('click', () => setZoom(zoom + 0.15));
+    btnZO.addEventListener('click', () => setZoom(zoom - 0.15));
+    btnZF.addEventListener('click', fitToView);
+
+    function setZoom(z) {
+      zoom = Math.min(4, Math.max(0.2, z));
+      applyZoom();
+    }
+
+    function applyZoom() {
+      imgCont.style.transform = `scale(${zoom})`;
+      zoomLbl.textContent = Math.round(zoom * 100) + '%';
+      // Reposition overlays after zoom (they use px on the displayed image)
+      if (ocrLines.length) positionOverlays();
+    }
+
+    function fitToView() {
+      const area = $('canvas-area');
+      const padW = area.clientWidth - 64;
+      const padH = area.clientHeight - 64;
+      const s = Math.min(1, padW / nativeW, padH / nativeH);
+      zoom = s;
+      applyZoom();
+    }
+
+    window.addEventListener('resize', () => {
+      if (ocrLines.length) positionOverlays();
+    });
+
+    // ─── OCR ──────────────────────────────────────────────────
+    btnOCR.addEventListener('click', runOCR);
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && currentFile && !isOCR) runOCR();
+    });
+
+    async function runOCR() {
+      if (!currentFile || isOCR) return;
+      isOCR = true;
+      clearOverlays(); ocrLines = [];
+      statsSec.classList.add('hidden');
+      exportSec.classList.add('hidden');
+      modInd.classList.add('hidden');
+      btnOCR.disabled = true;
+      progSec.classList.remove('hidden');
+      setProg(0, 'Memuat OCR engine...');
+
+      const lang = $('ocr-lang').value;
+
+      try {
+        if (worker) { await worker.terminate(); worker = null; }
+
+        worker = await Tesseract.createWorker(lang, 1, {
+          logger: m => {
+            if (m.status === 'loading tesseract core') setProg(m.progress * 8, 'Memuat core...');
+            else if (m.status === 'initializing tesseract') setProg(8 + m.progress * 10, 'Inisialisasi Tesseract...');
+            else if (m.status === 'loading language traineddata') setProg(18 + m.progress * 25, `Memuat data bahasa (${lang})...`);
+            else if (m.status === 'initializing api') setProg(43 + m.progress * 10, 'Inisialisasi API...');
+            else if (m.status === 'recognizing text') setProg(53 + m.progress * 45, `Mengenali teks... ${Math.round(m.progress * 100)}%`);
+          }
+        });
+
+        await worker.setParameters({ tessedit_pageseg_mode: Tesseract.PSM.AUTO });
+
+        setProg(98, 'Menyusun hasil...');
+        const { data } = await worker.recognize(currentFile);
+        setProg(100, 'Selesai!');
+        setTimeout(() => progSec.classList.add('hidden'), 600);
+
+        // Filter lines with real text
+        const validLines = data.lines.filter(l => l.text.trim().length > 0);
+
+        if (!validLines.length) {
+          toast('Tidak ada teks terdeteksi. Coba gambar yang lebih jelas.', 'warning');
+          isOCR = false; btnOCR.disabled = false; return;
+        }
+
+        // Build ocrLines
+        ocrLines = validLines.map(l => ({
+          original: l.text.trim(),
+          text: l.text.trim(),
+          bbox: l.bbox,      // {x0,y0,x1,y1} in native coords
+          modified: false,
+          el: null
+        }));
+
+        buildOverlays();
+        positionOverlays();
+
+        // Stats
+        const conf = Math.round(data.confidence);
+        const words = data.words.length;
+        $('s-conf').textContent = conf + '%';
+        $('s-lines').textContent = validLines.length;
+        $('s-words').textContent = words;
+        $('s-mod').textContent = '0';
+        statsSec.classList.remove('hidden');
+        exportSec.classList.remove('hidden');
+
+        // Auto enable edit mode
+        setEditMode(true);
+        toast(`${validLines.length} baris teks terdeteksi — ${conf}% confidence`, 'success');
+
+      } catch (err) {
+        console.error(err);
+        progSec.classList.add('hidden');
+        toast('OCR gagal: ' + (err.message || 'Error tidak dikenal'), 'error');
+      }
+
+      isOCR = false;
+      btnOCR.disabled = false;
+    }
+
+    function setProg(pct, lbl) {
+      progBar.style.width = pct + '%';
+      progLbl.textContent = lbl;
+      progPct.textContent = Math.round(pct) + '%';
+    }
+
+    // ─── OVERLAYS ─────────────────────────────────────────────
+    function buildOverlays() {
+      ocrLines.forEach((line, i) => {
+        const el = document.createElement('div');
+        el.className = 'ov';
+        el.contentEditable = 'true';
+        el.spellcheck = false;
+        el.textContent = line.text;
+
+        el.addEventListener('input', () => {
+          const newTxt = el.innerText;
+          line.text = newTxt;
+          const wasModified = line.modified;
+          line.modified = newTxt !== line.original;
+          if (line.modified !== wasModified) updateModCount();
+          if (line.modified) el.classList.add('mod');
+          else el.classList.remove('mod');
+        });
+
+        imgWrap.appendChild(el);
+        line.el = el;
+      });
+    }
+
+    function positionOverlays() {
+      // The image is displayed at zoom * naturalSize, but the wrapper itself
+      // is inside a container scaled by CSS transform, so the overlay px
+      // must match the natural image px (transform handles visual scaling).
+      ocrLines.forEach(line => {
+        const el = line.el;
+        if (!el) return;
+        const { x0, y0, x1, y1 } = line.bbox;
+        const w = x1 - x0, h = y1 - y0;
+        el.style.left = x0 + 'px';
+        el.style.top = y0 + 'px';
+        el.style.width = w + 'px';
+        el.style.height = h + 'px';
+        el.style.fontSize = Math.max(8, Math.round(h * 0.68)) + 'px';
+      });
+    }
+
+    function updateModCount() {
+      const n = ocrLines.filter(l => l.modified).length;
+      $('s-mod').textContent = n;
+      modCnt.textContent = n;
+      if (n > 0) { modInd.classList.remove('hidden'); modInd.classList.add('flex'); }
+      else modInd.classList.add('hidden');
+    }
+
+    // ─── EXPORT AS PNG (edits burned into image) ──────────────
+    btnPNG.addEventListener('click', exportPNG);
+
+    async function exportPNG() {
+      if (!currentFile || !ocrLines.length) return;
+
+      toast('Menyiapkan ekspor...', 'info');
+
+      // Load image at native resolution
+      const bmp = await createImageBitmap(currentFile);
+      const canvas = document.createElement('canvas');
+      canvas.width = nativeW;
+      canvas.height = nativeH;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(bmp, 0, 0);
+
+      // Process each modified line
+      const modded = ocrLines.filter(l => l.modified);
+      for (const line of modded) {
+        const { x0, y0, x1, y1 } = line.bbox;
+        const bw = x1 - x0, bh = y1 - y0;
+
+        // 1. Sample background color
+        const bg = sampleBg(ctx, x0, y0, x1, y1);
+        const bgBr = parseBgBrightness(bg);
+
+        // 2. Detect ink bounds & font weight BEFORE erasing
+        const ink = detectInkBounds(ctx, x0, y0, x1, y1, bgBr);
+        const weight = detectFontWeight(ctx, x0, y0, x1, y1, bgBr);
+        const fg = detectTextColor(ctx, x0, y0, x1, y1, bgBr);
+
+        // 3. Erase original text
+        ctx.fillStyle = bg;
+        ctx.fillRect(Math.max(0, x0 - 2), Math.max(0, y0 - 1), bw + 4, bh + 2);
+
+        // 4. Draw new text — font-size derived from actual ink height (cap height ≈ 72% of pt size)
+        const fontSize = Math.max(7, Math.round(ink.height / 0.72));
+        ctx.font = `${weight} ${fontSize}px Arial, sans-serif`;
+        ctx.fillStyle = fg;
+        ctx.textBaseline = 'top';
+        // Place text at the inkTop offset so it sits exactly where original text was
+        ctx.fillText(line.text, x0, y0 + ink.top, bw);
+      }
+
+      if (!modded.length) {
+        toast('Tidak ada perubahan teks. Edit dulu sebelum export.', 'warning');
+        return;
+      }
+
+      canvas.toBlob(blob => {
+        const a = document.createElement('a');
+        const name = currentFile.name.replace(/\.[^.]+$/, '');
+        a.href = URL.createObjectURL(blob);
+        a.download = `${name}-edited.png`;
+        a.click();
+        toast(`PNG disimpan: ${modded.length} baris diperbarui`, 'success');
+      }, 'image/png', 1.0);
+    }
+
+    // Parse brightness value from an rgb() string
+    function parseBgBrightness(rgbStr) {
+      const m = rgbStr.match(/\d+/g);
+      return m ? (+m[0] * 0.299 + +m[1] * 0.587 + +m[2] * 0.114) : 220;
+    }
+
+    // Sample background color from strips above, below, left, right of bbox
+    function sampleBg(ctx, x0, y0, x1, y1) {
+      const samples = [];
+      const margin = 5;
+      const ay = Math.max(0, y0 - margin), by = Math.min(nativeH - 1, y1 + margin);
+      const lx = Math.max(0, x0 - margin), rx = Math.min(nativeW - 1, x1 + margin);
+      const xstep = Math.max(2, Math.round((x1 - x0) / 30));
+      const ystep = Math.max(2, Math.round((y1 - y0) / 15));
+
+      for (let x = x0; x <= x1; x += xstep) {
+        const cx = Math.min(x, nativeW - 1);
+        let d = ctx.getImageData(cx, ay, 1, 1).data; samples.push([d[0], d[1], d[2]]);
+        d = ctx.getImageData(cx, by, 1, 1).data; samples.push([d[0], d[1], d[2]]);
+      }
+      for (let y = y0; y <= y1; y += ystep) {
+        const cy = Math.min(y, nativeH - 1);
+        let d = ctx.getImageData(lx, cy, 1, 1).data; samples.push([d[0], d[1], d[2]]);
+        d = ctx.getImageData(rx, cy, 1, 1).data; samples.push([d[0], d[1], d[2]]);
+      }
+      if (!samples.length) return 'rgb(255,255,255)';
+      const avg = samples.reduce((a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]], [0, 0, 0]).map(v => Math.round(v / samples.length));
+      return `rgb(${avg[0]},${avg[1]},${avg[2]})`;
+    }
+
+    /**
+     * Detect the actual pixel-level ink bounds within the bbox.
+     * Returns {top, height} in native image coordinates relative to y0.
+     * This gives us the true cap-height of the characters.
+     */
+    function detectInkBounds(ctx, x0, y0, x1, y1, bgBr) {
+      const bw = Math.max(1, x1 - x0), bh = Math.max(1, y1 - y0);
+      const sx = Math.max(0, x0), sy = Math.max(0, y0);
+      const sw = Math.min(bw, nativeW - sx), sh = Math.min(bh, nativeH - sy);
+      if (sw <= 0 || sh <= 0) return { top: 0, height: bh };
+
+      const data = ctx.getImageData(sx, sy, sw, sh).data;
+      // Ink threshold: pixels significantly darker (or lighter) than background
+      const thresh = bgBr > 128 ? bgBr - 45 : bgBr + 45;
+
+      let inkTop = sh, inkBot = 0, found = false;
+      for (let y = 0; y < sh; y++) {
+        for (let x = 0; x < sw; x++) {
+          const i = (y * sw + x) * 4;
+          const br = data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114;
+          const isInk = bgBr > 128 ? br < thresh : br > thresh;
+          if (isInk) {
+            if (y < inkTop) inkTop = y;
+            if (y > inkBot) inkBot = y;
+            found = true;
+          }
+        }
+      }
+      if (!found) return { top: Math.round(bh * 0.1), height: Math.round(bh * 0.7) };
+      return { top: inkTop, height: Math.max(1, inkBot - inkTop + 1) };
+    }
+
+    /**
+     * Detect font weight by measuring ink pixel density.
+     * Bold text typically covers >12% of bbox area with ink.
+     */
+    function detectFontWeight(ctx, x0, y0, x1, y1, bgBr) {
+      const bw = Math.max(1, x1 - x0), bh = Math.max(1, y1 - y0);
+      const sx = Math.max(0, x0), sy = Math.max(0, y0);
+      const sw = Math.min(bw, nativeW - sx), sh = Math.min(bh, nativeH - sy);
+      if (sw <= 0 || sh <= 0) return 'normal';
+
+      const data = ctx.getImageData(sx, sy, sw, sh).data;
+      const thresh = bgBr > 128 ? bgBr - 45 : bgBr + 45;
+      let dark = 0;
+      for (let i = 0; i < data.length; i += 4) {
+        const br = data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114;
+        const isInk = bgBr > 128 ? br < thresh : br > thresh;
+        if (isInk) dark++;
+      }
+      return (dark / (sw * sh)) > 0.11 ? 'bold' : 'normal';
+    }
+
+    // Detect predominant text color inside bbox
+    function detectTextColor(ctx, x0, y0, x1, y1, bgBr) {
+      const yStart = y0 + Math.floor((y1 - y0) * 0.2);
+      const yEnd = y0 + Math.floor((y1 - y0) * 0.8);
+      const step = Math.max(2, Math.round((x1 - x0) / 24));
+      let darkest = null, lightest = null;
+
+      for (let y = yStart; y <= yEnd; y += 3) {
+        for (let x = x0 + 1; x <= x1 - 1; x += step) {
+          const d = ctx.getImageData(Math.min(x, nativeW - 1), Math.min(y, nativeH - 1), 1, 1).data;
+          const br = d[0] * 0.299 + d[1] * 0.587 + d[2] * 0.114;
+          if (!darkest || br < darkest.br) darkest = { br, r: d[0], g: d[1], b: d[2] };
+          if (!lightest || br > lightest.br) lightest = { br, r: d[0], g: d[1], b: d[2] };
+        }
+      }
+      if (bgBr >= 128) return darkest ? `rgb(${darkest.r},${darkest.g},${darkest.b})` : '#000000';
+      else return lightest ? `rgb(${lightest.r},${lightest.g},${lightest.b})` : '#ffffff';
+    }
+
+    // ─── COPY TEXT ────────────────────────────────────────────
+    btnCopy.addEventListener('click', () => {
+      const text = ocrLines.map(l => l.text).join('\n');
+      navigator.clipboard.writeText(text).then(() => toast('Teks disalin!'))
+        .catch(() => {
+          const ta = document.createElement('textarea');
+          ta.value = text; document.body.appendChild(ta); ta.select();
+          document.execCommand('copy'); document.body.removeChild(ta);
+          toast('Teks disalin!');
+        });
+    });
+
+    // ─── TOAST ────────────────────────────────────────────────
+    let toastTimer;
+    function toast(msg, type = 'success') {
+      const colors = { success: 'text-emerald-400', error: 'text-red-400', warning: 'text-yellow-400', info: 'text-primary' };
+      const icons = { success: 'check_circle', error: 'error', warning: 'warning', info: 'info' };
+      $('t-icon').textContent = icons[type] || 'info';
+      $('t-icon').className = `material-symbols-outlined text-[20px] ${colors[type] || colors.success}`;
+      $('t-msg').textContent = msg;
+      const el = $('toast');
+      el.classList.remove('hidden'); el.classList.add('flex');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { el.classList.add('hidden'); el.classList.remove('flex'); }, 3800);
+    }
+  </script>
+
+  <div class="dev-overlay">
+    <div class="dev-box">
+      🚧 MASIH PROSES 🚧<br>
+      <span style="font-size:14px; font-weight:normal; opacity:0.7;">
+        Halaman ini belum tersedia
+      </span>
+    </div>
+  </div>
+</body>
+
+</html>

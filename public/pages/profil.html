@@ -1,0 +1,1357 @@
+<!doctype html>
+
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="../Logo-Icon-TurikalePrint.jpg"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#136dec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101822",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <title>Turikale Print - Profil</title>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100"
+  >
+    <div class="relative flex min-h-screen flex-col overflow-x-hidden">
+      <header
+        class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex h-16 items-center justify-between">
+            <a href="/" class="flex items-center">
+              <img
+                src="../assets/images/Logo Biru-TurikalePrint.png"
+                alt="Turikale Print"
+                class="h-11 w-auto"
+              />
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+              <a
+                class="text-sm font-medium hover:text-primary transition-colors"
+                href="../../index.html"
+                >Beranda</a
+              >
+              <a
+                class="text-sm font-bold text-primary border-b-2 border-primary"
+                href="#"
+                >Profil</a
+              >
+              <a
+                class="text-sm font-medium hover:text-primary transition-colors"
+                href="aset-logo.php"
+                >Aset Logo</a
+              >
+              <a
+                class="text-sm font-medium hover:text-primary transition-colors"
+                href="artikel.html"
+                >Artikel</a
+              >
+            </nav>
+
+            <button
+              id="menu-toggle"
+              class="md:hidden text-slate-800 dark:text-white focus:outline-none transition-transform duration-300"
+            >
+              <span id="menu-icon" class="material-symbols-outlined text-3xl">
+                menu
+              </span>
+            </button>
+          </div>
+
+          <div class="relative md:hidden">
+            <div
+              id="mobile-menu"
+              class="absolute right-0 mt-3 w-64 origin-top transform scale-y-0 opacity-0 transition-all duration-300 ease-in-out bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-6 flex flex-col gap-5"
+            >
+              <a
+                class="text-base font-medium hover:text-primary transition-colors"
+                href="../../index.html"
+                >Beranda</a
+              >
+              <a
+                class="text-base font-semibold hover:text-primary transition-colors"
+                href="#"
+                >Profil</a
+              >
+              <a
+                class="text-base font-medium hover:text-primary transition-colors"
+                href="aset-logo.php"
+                >Aset Logo</a
+              >
+              <a
+                class="text-base font-medium hover:text-primary transition-colors"
+                href="artikel.html"
+                >Artikel</a
+              >
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="flex-1">
+        <section
+          class="relative w-full h-[500px] md:h-[600px] flex items-center justify-center overflow-hidden"
+        >
+          <div
+            class="absolute inset-0 bg-cover bg-center"
+            data-alt="Modern clean office interior with natural lighting"
+            style="
+              background-image: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDHGo1OGqRJ_jNnpQC_mAq_l_wN-d5UyW9mBCx56lQvWVi5Op8MCFw5dltzWaof24Uqapb5A4X-t55XrV7TIwAYUf8Xd1V712l3i37HGi33RlpGimYcSg34eE_tAFea4VszjhRlAHD04r-AQz1Esc20JvzMxhcL46uSJYtegwIdA0cLic6dtSeecY_NGvIldslxBPq3SFgZtlUeRT3PIl3HxRFJIVrf3o2GVM8juZkuffop0D1AD9sWHeJxofowbakYK5qS6t3MnWS7&quot;);
+            "
+          ></div>
+          <div
+            class="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px]"
+          ></div>
+          <div class="relative z-10 w-full max-w-7xl px-4 lg:px-20">
+            <div class="flex flex-col items-center text-center mb-12">
+              <h1
+                class="text-white text-4xl md:text-6xl font-black mb-4 tracking-tight"
+              >
+                Profil Turikale Print
+              </h1>
+              <p class="text-slate-200 text-lg md:text-xl max-w-2xl">
+                Turikale Print hadir sebagai solusi cetak untuk kebutuhan UMKM,
+                bisnis, dan personal di Maros dan sekitarnya.
+              </p>
+            </div>
+
+            <div
+              class="grid grid-cols-3 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+            >
+              <div
+                class="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-xl shadow-2xl flex flex-col items-center text-center"
+              >
+                <span
+                  class="material-symbols-outlined text-[#14b8a6] text-4xl mb-2"
+                  >task_alt</span
+                >
+                <p class="text-slate-300 text-sm font-medium">Total Pesanan</p>
+                <h3
+                  class="text-white text-large sm:text-2xl lg:text-3xl font-bold"
+                >
+                  500+ Selesai
+                </h3>
+              </div>
+
+              <div
+                class="bg-white/10 backdrop-blur-lg border border-white/20 p-6 rounded-xl shadow-2xl flex flex-col items-center text-center"
+              >
+                <span
+                  class="material-symbols-outlined text-[#14b8a6] text-4xl mb-2"
+                  >groups</span
+                >
+                <p class="text-slate-300 text-sm font-medium">
+                  Pelanggan Aktif
+                </p>
+                <h3
+                  class="text-white text-large sm:text-2xl lg:text-3xl font-bold"
+                >
+                  50+ Perbulan
+                </h3>
+              </div>
+
+              <a
+                class="group bg-primary p-6 rounded-xl shadow-2xl flex flex-col items-center text-center transition-transform hover:scale-105"
+                href="https://www.google.com/search?sca_esv=0c0ded2c55dfde36&hl=id-ID&sxsrf=ANbL-n4zXsgHjIGqI5Ah2g3QhQNm4itPcg:1772639616547&si=AL3DRZEsmMGCryMMFSHJ3StBhOdZ2-6yYkXd_doETEE1OR-qOdCDzzTZGbX4YTWrN5w72-PVWj9p7y6mmtIG-tuZHMkPLFoGhrH32NvxE9TUYKZidNmt__86W6ju-zTJ12t4C9tjiYE1&q=Turikale+Print+Ulasan&sa=X&ved=2ahUKEwif1KKVzYaTAxVDUGcHHaT5B1cQ0bkNegQIHxAH&biw=1366&bih=599&dpr=1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span
+                  class="material-symbols-outlined text-yellow-400 text-4xl mb-2"
+                  >stars</span
+                >
+                <p class="text-white/80 text-sm font-medium">Rating Google</p>
+                <h3
+                  class="text-white text-large sm:text-2xl lg:text-3xl font-bold flex items-center gap-2"
+                >
+                  4.9 Verified
+                </h3>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ TIMELINE SECTION — Tentang Perusahaan ═══ -->
+        <style>
+          /* ── Section background ── */
+          #timeline-section {
+            background: linear-gradient(160deg, #f0f4ff 0%, #f8faff 40%, #eef9f4 100%);
+          }
+          .dark #timeline-section {
+            background: linear-gradient(160deg, #0c1424 0%, #101822 50%, #091520 100%);
+          }
+
+          /* ── Section header label ── */
+          .tl-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #136dec22, #10b98122);
+            border: 1px solid #136dec33;
+            color: #136dec;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+          }
+
+          /* ── Track (the vertical path) ── */
+          .tl-track {
+            position: relative;
+          }
+          .tl-track::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            transform: translateX(-50%);
+            background: #e2e8f0;
+            border-radius: 9999px;
+            z-index: 0;
+          }
+          .dark .tl-track::before { background: #1e293b; }
+
+          /* The animated fill line */
+          .tl-fill {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 3px;
+            height: 0%;
+            transform: translateX(-50%);
+            background: linear-gradient(180deg, #136dec, #10b981);
+            border-radius: 9999px;
+            z-index: 1;
+            transition: height 0.05s linear;
+          }
+
+          /* ── Each milestone row ── */
+          .tl-item {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 56px 1fr;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 4rem;
+            z-index: 2;
+          }
+
+          /* Mobile: stack vertically */
+          @media (max-width: 767px) {
+            .tl-track::before { left: 24px; }
+            .tl-fill           { left: 24px; }
+            .tl-item {
+              grid-template-columns: 48px 1fr;
+              grid-template-rows: auto;
+              gap: 0 1rem;
+              margin-bottom: 3rem;
+            }
+            .tl-node-col { grid-column: 1; grid-row: 1; }
+            .tl-card-left,
+            .tl-card-right { grid-column: 2; grid-row: 1; text-align: left; }
+            .tl-spacer { display: none; }
+          }
+
+          /* ── Node dot ── */
+          .tl-node {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #fff;
+            border: 3px solid #cbd5e1;
+            z-index: 3;
+            transition: border-color 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+            cursor: default;
+          }
+          .dark .tl-node { background: #0f172a; border-color: #334155; }
+
+          .tl-node .tl-dot-inner {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            transition: background 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+          }
+
+          /* Active state */
+          .tl-item.active .tl-node {
+            border-color: #136dec;
+            transform: scale(1.12);
+          }
+          .tl-item.active .tl-dot-inner {
+            background: linear-gradient(135deg, #136dec, #10b981);
+            box-shadow: 0 0 0 6px rgba(19,109,236,0.15), 0 0 20px rgba(19,109,236,0.3);
+          }
+
+          /* Pulse ring on active */
+          .tl-node::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid #136dec;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.4s, transform 0.4s;
+          }
+          .tl-item.active .tl-node::after {
+            opacity: 0.35;
+            transform: scale(1);
+            animation: tlPulse 2s ease-in-out infinite;
+          }
+          @keyframes tlPulse {
+            0%, 100% { opacity: 0.35; transform: scale(1); }
+            50%       { opacity: 0;    transform: scale(1.35); }
+          }
+
+          /* ── Card ── */
+          .tl-card {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1);
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: 1.25rem;
+            padding: 1.5rem 1.75rem;
+            box-shadow: 0 4px 24px rgba(19,109,236,0.07), 0 1px 4px rgba(0,0,0,0.04);
+          }
+          .dark .tl-card {
+            background: rgba(15,23,42,0.6);
+            border-color: rgba(51,65,85,0.6);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+          }
+          .tl-item.active .tl-card {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          .tl-item.active .tl-card-left  { transform: translateX(0); }
+          .tl-item.active .tl-card-right { transform: translateX(0); }
+
+          /* Direction-specific initial transforms */
+          .tl-card-left  { transform: translateX(32px) translateY(0); }
+          .tl-card-right { transform: translateX(-32px) translateY(0); }
+
+          /* Active glow on card */
+          .tl-item.active .tl-card {
+            box-shadow: 0 8px 32px rgba(19,109,236,0.12), 0 1px 4px rgba(0,0,0,0.04);
+          }
+
+          /* Right-align left card */
+          .tl-card-left { text-align: right; margin-right: 1.5rem; }
+          .tl-card-right { text-align: left; margin-left: 1.5rem; }
+          @media (max-width: 767px) {
+            .tl-card-left { text-align: left; margin-right: 0; }
+          }
+
+          /* Year badge */
+          .tl-year {
+            font-size: 2rem;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, #136dec, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.25rem;
+          }
+          .tl-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.35rem;
+          }
+          .dark .tl-title { color: #f1f5f9; }
+          .tl-desc {
+            font-size: 0.875rem;
+            color: #64748b;
+            line-height: 1.6;
+          }
+          .dark .tl-desc { color: #94a3b8; }
+
+          /* Icon badge */
+          .tl-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px; height: 28px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #136dec18, #10b98118);
+            color: #136dec;
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+          }
+        </style>
+
+        <section id="timeline-section" class="py-24 px-4 lg:px-20">
+          <div class="max-w-5xl mx-auto">
+
+            <!-- Header -->
+            <div class="text-center mb-16">
+              <span class="tl-label">
+                <span class="material-symbols-outlined text-base">timeline</span>
+                Perjalanan Kami
+              </span>
+              <h2 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mt-4 mb-3">
+                Tentang Perusahaan
+              </h2>
+              <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-base leading-relaxed">
+                Lebih dari 5 tahun melayani masyarakat Maros — dari bisnis keluarga kecil
+                hingga percetakan digital yang dipercaya instansi dan UMKM.
+              </p>
+            </div>
+
+            <!-- Timeline track -->
+            <div class="tl-track" id="tl-track">
+              <div class="tl-fill" id="tl-fill"></div>
+
+              <!-- ─── Milestone 1: 2017 ─── -->
+              <div class="tl-item" data-tl-item>
+                <!-- LEFT card -->
+                <div class="tl-card tl-card-left">
+                  <span class="tl-icon material-symbols-outlined">storefront</span>
+                  <div class="tl-year">2017</div>
+                  <div class="tl-title">Awal Berdiri</div>
+                  <p class="tl-desc">Turikale Print didirikan sebagai bisnis keluarga, melayani kebutuhan fotokopi, pengetikan, dan ATK di Kabupaten Maros.</p>
+                </div>
+                <!-- Center node -->
+                <div class="tl-node-col flex justify-center">
+                  <div class="tl-node"><div class="tl-dot-inner"></div></div>
+                </div>
+                <!-- RIGHT spacer -->
+                <div class="tl-spacer"></div>
+              </div>
+
+              <!-- ─── Milestone 2: 2020 ─── -->
+              <div class="tl-item" data-tl-item>
+                <!-- LEFT spacer -->
+                <div class="tl-spacer"></div>
+                <!-- Center node -->
+                <div class="tl-node-col flex justify-center">
+                  <div class="tl-node"><div class="tl-dot-inner"></div></div>
+                </div>
+                <!-- RIGHT card -->
+                <div class="tl-card tl-card-right">
+                  <span class="tl-icon material-symbols-outlined">assignment</span>
+                  <div class="tl-year">2020</div>
+                  <div class="tl-title">Legalitas Resmi</div>
+                  <p class="tl-desc">Perusahaan resmi berbadan hukum sebagai <strong>CV. Opu Barakati Jaya</strong> pada 29 Juni 2020, berfokus pada jasa percetakan dan penggandaan dokumen.</p>
+                </div>
+              </div>
+
+              <!-- ─── Milestone 3: 2022 ─── -->
+              <div class="tl-item" data-tl-item>
+                <!-- LEFT card -->
+                <div class="tl-card tl-card-left">
+                  <span class="tl-icon material-symbols-outlined">print</span>
+                  <div class="tl-year">2022</div>
+                  <div class="tl-title">Ekspansi Digital Printing</div>
+                  <p class="tl-desc">Turikale Print memperluas layanan ke Digital Printing — spanduk, stiker, cetak instansi dan UMKM, termasuk e-katalog pemerintah.</p>
+                </div>
+                <!-- Center node -->
+                <div class="tl-node-col flex justify-center">
+                  <div class="tl-node"><div class="tl-dot-inner"></div></div>
+                </div>
+                <!-- RIGHT spacer -->
+                <div class="tl-spacer"></div>
+              </div>
+
+              <!-- ─── Milestone 4: 2023 ─── -->
+              <div class="tl-item" data-tl-item>
+                <!-- LEFT spacer -->
+                <div class="tl-spacer"></div>
+                <!-- Center node -->
+                <div class="tl-node-col flex justify-center">
+                  <div class="tl-node"><div class="tl-dot-inner"></div></div>
+                </div>
+                <!-- RIGHT card -->
+                <div class="tl-card tl-card-right">
+                  <span class="tl-icon material-symbols-outlined">lan</span>
+                  <div class="tl-year">2023</div>
+                  <div class="tl-title">Pembaruan Brand & Ekosistem Bisnis</div>
+                  <p class="tl-desc">Rebranding identitas Turikale Print dan pendirian <strong>PT. Barakati Daya Hutama (Barakati.HUB)</strong> untuk pengembangan sumber daya manusia.</p>
+                </div>
+              </div>
+
+              <!-- ─── Milestone 5: Sekarang ─── -->
+              <div class="tl-item" data-tl-item>
+                <!-- LEFT card -->
+                <div class="tl-card tl-card-left">
+                  <span class="tl-icon material-symbols-outlined">rocket_launch</span>
+                  <div class="tl-year" style="font-size:1.5rem">Sekarang</div>
+                  <div class="tl-title">Terus Bertumbuh</div>
+                  <p class="tl-desc">Lebih dari 500 pesanan selesai, 50+ pelanggan aktif per bulan, dan rating <strong>4.9★ di Google</strong> — melayani UMKM, instansi, dan masyarakat Maros.</p>
+                </div>
+                <!-- Center node -->
+                <div class="tl-node-col flex justify-center">
+                  <div class="tl-node"><div class="tl-dot-inner"></div></div>
+                </div>
+                <!-- RIGHT spacer -->
+                <div class="tl-spacer"></div>
+              </div>
+
+            </div><!-- /tl-track -->
+          </div>
+        </section>
+
+        <!-- Timeline Script -->
+        <script>
+          (function () {
+            var track  = document.getElementById('tl-track');
+            var fill   = document.getElementById('tl-fill');
+            var items  = Array.from(document.querySelectorAll('[data-tl-item]'));
+
+            function getProgress() {
+              var rect   = track.getBoundingClientRect();
+              var winH   = window.innerHeight;
+              // How far the track has been scrolled through (0→1)
+              var start  = rect.top  - winH * 0.85;
+              var end    = rect.bottom - winH * 0.15;
+              var total  = end - start;
+              var passed = -start;
+              return Math.max(0, Math.min(1, passed / total));
+            }
+
+            function onScroll() {
+              var p = getProgress();
+              fill.style.height = (p * 100) + '%';
+
+              // Activate items as they enter midscreen
+              items.forEach(function (item) {
+                var r = item.getBoundingClientRect();
+                var mid = r.top + r.height / 2;
+                if (mid < window.innerHeight * 0.82) {
+                  item.classList.add('active');
+                }
+              });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll(); // run once on load
+          })();
+        </script>
+
+        <section class="py-20 px-4 lg:px-20 max-w-7xl mx-auto">
+          <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="w-full md:w-1/3 max-w-[220px] mx-auto md:mx-0">
+              <div class="relative group">
+                <div
+                  class="absolute -inset-4 bg-primary/10 rounded-2xl group-hover:bg-primary/20 transition-all"
+                ></div>
+                <img
+                  alt="Owner of Turikale Print"
+                  class="relative rounded-xl w-full aspect-[3/4] object-cover shadow-xl"
+                  data-alt="Professional portrait of a male business owner"
+                  src="../assets/images/owner-image.png"
+                />
+              </div>
+            </div>
+            <div class="w-full md:w-2/3">
+              <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-4"
+              >
+                Founding Vision
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold mb-3">Andry Ridwan</h2>
+              <h3 class="text-3xl text-primary md:text-2xl font-medium mb-3">
+                Pemilik Toko
+              </h3>
+              <p
+                class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6"
+              >
+                Andry Ridwan merupakan pendiri CV Opu Barakati Jaya sekaligus
+                penggagas Turikale Print. Melalui komitmen pada kualitas dan
+                pelayanan, beliau mengembangkan Turikale Print menjadi layanan
+                percetakan yang dipercaya oleh masyarakat dan pelaku UMKM di
+                Maros.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="py-20 px-4 lg:px-20 bg-white dark:bg-background-dark">
+          <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+              <h2
+                class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4"
+              >
+                Tim Kami
+              </h2>
+              <p
+                class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg"
+              >
+                Kekuatan di balik setiap layanan kami adalah tim yang
+                berdedikasi dan ahli di bidangnya.
+              </p>
+            </div>
+            <div class="grid grid-cols-2 gap-8 max-w-3xl mx-auto">
+              <div class="relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-primary/20 overflow-hidden shadow-xl bg-slate-100"
+                  >
+                    <img
+                      alt="Suci"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/suci-img.jpg"
+                    />
+                  </div>
+                  <h4 class="font-black text-xl mb-2">Suci</h4>
+                  <p
+                    class="text-sm text-primary font-bold uppercase tracking-wider"
+                  >
+                    Desainer & Admin
+                  </p>
+                </div>
+              </div>
+
+              <div class="relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-primary/20 overflow-hidden shadow-xl bg-slate-100"
+                  >
+                    <img
+                      alt="Adit"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/adit-img.jpg"
+                    />
+                  </div>
+                  <h4 class="font-black text-xl mb-2">Adit</h4>
+                  <p
+                    class="text-sm text-primary font-bold uppercase tracking-wider"
+                  >
+                    Desainer & Admin
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <style>
+          /* ── Mobile swipe carousel helpers ── */
+          .mobile-swipe-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+          }
+          .mobile-swipe-track::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+          }
+          .mobile-swipe-item {
+            flex: 0 0 85%; /* Peek next card */
+            max-width: 280px;
+            scroll-snap-align: center;
+          }
+
+          /* Reset to grid on tablet (sm) and up */
+          @media (min-width: 640px) {
+            .mobile-swipe-track {
+              display: grid;
+              overflow-x: visible;
+              scroll-snap-type: none;
+            }
+            .mobile-swipe-item {
+              flex: none;
+              max-width: none;
+            }
+          }
+
+          /* ── Swipe Dots styling ── */
+          .mobile-swipe-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+          }
+          @media (min-width: 640px) {
+            .mobile-swipe-dots { display: none; }
+          }
+          .swipe-dot {
+            width: 8px; height: 8px;
+            border-radius: 9999px;
+            background: #cbd5e1;
+            transition: background 0.3s, width 0.3s;
+            cursor: pointer;
+          }
+          .swipe-dot.active {
+            background: #136dec;
+            width: 22px;
+          }
+        </style>
+
+        <section class="py-20 bg-slate-100 dark:bg-slate-900/50 px-4 lg:px-20">
+          <div class="max-w-7xl mx-auto">
+            <div
+              class="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-12"
+            >
+              <div class="max-w-3xl">
+                <h2 class="text-3xl font-bold mb-4">
+                  Praktek Kerja Lapangan (PKL)
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Turikale Print menerima siswa Praktik Kerja Lapangan (PKL)
+                  sebagai bagian dari komitmen dalam mendukung pendidikan dan
+                  pengembangan keterampilan. Siswa akan terlibat langsung dalam
+                  proses desain, produksi, hingga pelayanan, sehingga
+                  mendapatkan pengalaman kerja nyata di dunia percetakan.
+                </p>
+              </div>
+              <div class="flex items-center gap-3">
+                <button
+                  class="px-6 py-2 rounded-lg text-sm font-semibold bg-primary text-white shadow-md shadow-primary/20"
+                >
+                  Nov 2025 - Feb 2026
+                </button>
+                <button
+                  class="px-6 py-2 rounded-lg text-sm font-semibold border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800"
+                >
+                  Nov 2026 - Feb 2027
+                </button>
+              </div>
+            </div>
+            <div id="pklGrid" class="mobile-swipe-track pb-4 sm:pb-0 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div class="mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-xl shadow-lg border-b-4 border-primary p-6 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-md bg-white"
+                  >
+                    <img
+                      alt="Rezky"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/riki-img.jpeg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">SMKN 1 Maros</p>
+                  <h4 class="font-bold text-lg mb-1">Rezky</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Desain Komunikasi Visual
+                  </p>
+                </div>
+              </div>
+
+              <div class="mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-xl shadow-lg border-b-4 border-primary p-6 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-md bg-white"
+                  >
+                    <img
+                      alt="Anggi"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/anggi-img.jpeg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">SMKN 1 Maros</p>
+                  <h4 class="font-bold text-lg mb-1">Anggi</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Desain Komunikasi Visual
+                  </p>
+                </div>
+              </div>
+
+              <div class="mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-xl shadow-lg border-b-4 border-primary p-6 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-md bg-white"
+                  >
+                    <img
+                      alt="Pute"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/pute-img.jpeg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">SMKN 1 Maros</p>
+                  <h4 class="font-bold text-lg mb-1">Pute</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Desain Komunikasi Visual
+                  </p>
+                </div>
+              </div>
+
+              <div class="mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-xl shadow-lg border-b-4 border-primary p-6 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-md bg-white"
+                  >
+                    <img
+                      alt="Salwa"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/salwa-img.jpeg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">SMKN 1 Maros</p>
+                  <h4 class="font-bold text-lg mb-1">Salwa</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Desain Komunikasi Visual
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- PKL Dots -->
+            <div id="pklDots" class="mobile-swipe-dots"></div>
+          </div>
+        </section>
+
+        <section class="py-20 px-4 lg:px-20 max-w-7xl mx-auto">
+          <div class="max-w-7xl mx-auto">
+            <div
+              class="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-12"
+            >
+              <div class="max-w-4xl">
+                <h2 class="text-3xl font-bold mb-4">Program Magang Nasional</h2>
+                <p
+                  class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed"
+                >
+                  CV Opu Barakati Jaya menjadi bagian dari Program Magang
+                  Nasional Kementerian Ketenagakerjaan Republik Indonesia
+                  (Kemnaker), dengan memberikan kesempatan bagi peserta untuk
+                  belajar dan mengembangkan kompetensi melalui pengalaman kerja
+                  nyata.
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button
+                  id="btnBatch1"
+                  class="batch-btn px-6 py-2 rounded-lg text-sm font-bold bg-primary text-white shadow-lg shadow-primary/30"
+                >
+                  Batch 1
+                </button>
+                <button
+                  id="btnBatch2"
+                  class="batch-btn px-6 py-2 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800"
+                >
+                  Batch 2
+                </button>
+              </div>
+            </div>
+            <div id="internGrid" class="mobile-swipe-track pb-4 sm:pb-0 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div class="batch batch1 mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Dila"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/dila-img.jpg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">
+                    Univ. Muslim Indonesia
+                  </p>
+                  <h4 class="font-bold text-lg mb-1">Dila</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Desain Grafis
+                  </p>
+                </div>
+              </div>
+
+              <div class="batch batch1 mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Ima"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/hima-img.jpg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">Univ. Muslim Maros</p>
+                  <h4 class="font-bold text-lg mb-1">Ima</h4>
+                  <p class="text-sm text-slate-500 font-medium">Admin</p>
+                </div>
+              </div>
+
+              <div class="batch batch1 mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Lia"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/lia-img.jpg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">Universitas Bosowa</p>
+                  <h4 class="font-bold text-lg mb-1">Lia</h4>
+                  <p class="text-sm text-slate-500 font-medium">Admin</p>
+                </div>
+              </div>
+
+              <div class="batch batch1 mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Nurul"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/nurul-img.jpg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">
+                    Universitas Tadulako
+                  </p>
+                  <h4 class="font-bold text-lg mb-1">Nurul</h4>
+                  <p class="text-sm text-slate-500 font-medium">Admin</p>
+                </div>
+              </div>
+
+              <div class="batch batch1 mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Ulfa"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/ulfa-img.jpeg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">
+                    UIN Alauddin Makassar
+                  </p>
+                  <h4 class="font-bold text-lg mb-1">Ulfa</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Inventory Staff
+                  </p>
+                </div>
+              </div>
+
+              <div class="batch batch1 mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Syahrul"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/arul-img.jpg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">
+                    Univ. Negeri Makassar
+                  </p>
+                  <h4 class="font-bold text-lg mb-1">Syahrul</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Desain Grafis
+                  </p>
+                </div>
+              </div>
+
+              <div class="batch batch1 mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Rifan"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/rifan.jpeg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">
+                    Univ. Muslim Indonesia
+                  </p>
+                  <h4 class="font-bold text-lg mb-1">Rifan</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Desain Grafis
+                  </p>
+                </div>
+              </div>
+
+              <div class="batch batch2 hidden mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Juma"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/mahdi-img.jpg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">Univ. Muslim Maros</p>
+                  <h4 class="font-bold text-lg mb-1">Juma</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Digital Content
+                  </p>
+                </div>
+              </div>
+
+              <div class="batch batch2 hidden mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Nisa"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/nisa-img.jpeg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">
+                    Universitas Hasanuddin
+                  </p>
+                  <h4 class="font-bold text-lg mb-1">Nisa</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Inventory Staff
+                  </p>
+                </div>
+              </div>
+
+              <div class="batch batch2 hidden mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Rahmi"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/rahmi-img.jpg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">
+                    Univ. Muslim Indonesia
+                  </p>
+                  <h4 class="font-bold text-lg mb-1">Rahmi</h4>
+                  <p class="text-sm text-slate-500 font-medium">Admin</p>
+                </div>
+              </div>
+
+              <div class="batch batch2 hidden mobile-swipe-item relative pt-12">
+                <div
+                  class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border-b-4 border-primary p-8 pt-16 flex flex-col items-center text-center"
+                >
+                  <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 size-24 rounded-full border-4 border-[#14b8a6] overflow-hidden shadow-xl"
+                  >
+                    <img
+                      alt="Indah"
+                      class="w-full h-full object-cover"
+                      src="../assets/images/indah-img.jpg"
+                    />
+                  </div>
+                  <p class="text-xs text-slate-500 mb-1">
+                    UIN Alauddin Makassar
+                  </p>
+                  <h4 class="font-bold text-lg mb-1">Indah</h4>
+                  <p class="text-sm text-slate-500 font-medium">
+                    Inventory Staff
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Intern Dots -->
+            <div id="internDots" class="mobile-swipe-dots"></div>
+          </div>
+        </section>
+      </main>
+
+      <footer
+        class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12 px-4 lg:px-20"
+      >
+        <div class="max-w-7xl mx-auto">
+          <div class="grid grid-cols-3 md:grid-cols-4 gap-4 md:gap-12 mb-12">
+            <div class="col-span-3 md:col-span-2">
+              <img
+                src="../assets/images/Logo Biru-TurikalePrint.png"
+                alt="Turikale Print"
+                class="h-10 w-auto"
+              />
+              <p class="text-slate-500 max-w-sm mb-6">
+                <br />Partner terpercaya untuk segala kebutuhan bisnis dan
+                personal anda. Cepat, berkualitas, dan terjangkau.
+              </p>
+              <div class="flex items-center gap-4">
+                <a
+                  class="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-colors"
+                  href="https://www.tiktok.com/@turikale_digitalprinting?is_from_webapp=1&sender_device=pc"
+                  target="_blank"
+                  rel="noopener noreferrer "
+                >
+                  <svg
+                    fill="#000000"
+                    viewBox="0 0 14 14"
+                    role="img"
+                    focusable="false"
+                    aria-hidden="true"
+                    xmlns="https://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m 4.9520184,12.936803 c -1.12784,-0.2039 -2.19411,-0.9875 -2.66789,-1.9606 -0.32895,-0.6757 -0.45541,-1.3901003 -0.37418,-2.1137003 0.15054,-1.3412 0.84482,-2.4395 1.92406,-3.0439 0.56899,-0.3186 1.38421,-0.4769 1.991,-0.3867 l 0.35091,0.052 9e-5,1.0725 9e-5,1.0725 -0.332,-0.014 c -0.79998,-0.033 -1.39595,0.3096 -1.70379,0.9784 -0.1473,0.32 -0.18461,0.8887 -0.081,1.2351 0.12773,0.4273003 0.50542,0.8132003 0.96145,0.9825003 0.15535,0.058 0.32344,0.08 0.61152,0.079 0.35862,-4e-4 0.42448,-0.013 0.67663,-0.1323 0.36505,-0.1726 0.63141,-0.4231 0.78797,-0.7411 0.10147,-0.2061003 0.13414,-0.3430003 0.16587,-0.6951003 0.0217,-0.2412 0.0401,-2.2122 0.0409,-4.38 l 10e-4,-3.94149998 0.68371,0 c 0.37605,0 0.8277,0.012 1.00368,0.027 l 0.31995,0.027 0,0.1584 c 0,0.3813 0.22299,1.1127 0.45156,1.4812 0.0571,0.092 0.2564996,0.3178 0.4431796,0.5018 0.36068,0.3555 0.66494,0.5352 1.13352,0.6692 0.138,0.04 0.28359,0.089 0.32353,0.109 0.0399,0.02 0.11522,0.038 0.16728,0.038 0.0521,4e-4 0.13701,0.012 0.18876,0.026 l 0.0941,0.025 0,0.9948 0,0.9948 -0.17773,-0.019 c -0.9611,-0.1037 -1.72925,-0.3601 -2.3423096,-0.782 -0.30468,-0.2096 -0.33102,-0.222 -0.30218,-0.1422 0.0104,0.029 0.003,1.1249 -0.0164,2.436 -0.0336,2.2728 -0.0396,2.3992 -0.12781,2.7173003 -0.33904,1.2222 -1.09994,2.1297 -2.10183,2.5068 -0.6126,0.2306 -1.39679,0.2932 -2.09405,0.1671 z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  class="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-primary hover:text-white transition-colors"
+                  href="https://www.instagram.com/turikale.print?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg
+                    fill="#000000"
+                    viewBox="0 0 24 24"
+                    xmlns="https://www.w3.org/2000/svg"
+                    data-name="Layer 1"
+                  >
+                    <path
+                      d="M17.34,5.46h0a1.2,1.2,0,1,0,1.2,1.2A1.2,1.2,0,0,0,17.34,5.46Zm4.6,2.42a7.59,7.59,0,0,0-.46-2.43,4.94,4.94,0,0,0-1.16-1.77,4.7,4.7,0,0,0-1.77-1.15,7.3,7.3,0,0,0-2.43-.47C15.06,2,14.72,2,12,2s-3.06,0-4.12.06a7.3,7.3,0,0,0-2.43.47A4.78,4.78,0,0,0,3.68,3.68,4.7,4.7,0,0,0,2.53,5.45a7.3,7.3,0,0,0-.47,2.43C2,8.94,2,9.28,2,12s0,3.06.06,4.12a7.3,7.3,0,0,0,.47,2.43,4.7,4.7,0,0,0,1.15,1.77,4.78,4.78,0,0,0,1.77,1.15,7.3,7.3,0,0,0,2.43.47C8.94,22,9.28,22,12,22s3.06,0,4.12-.06a7.3,7.3,0,0,0,2.43-.47,4.7,4.7,0,0,0,1.77-1.15,4.85,4.85,0,0,0,1.16-1.77,7.59,7.59,0,0,0,.46-2.43c0-1.06.06-1.4.06-4.12S22,8.94,21.94,7.88ZM20.14,16a5.61,5.61,0,0,1-.34,1.86,3.06,3.06,0,0,1-.75,1.15,3.19,3.19,0,0,1-1.15.75,5.61,5.61,0,0,1-1.86.34c-1,.05-1.37.06-4,.06s-3,0-4-.06A5.73,5.73,0,0,1,6.1,19.8,3.27,3.27,0,0,1,5,19.05a3,3,0,0,1-.74-1.15A5.54,5.54,0,0,1,3.86,16c0-1-.06-1.37-.06-4s0-3,.06-4A5.54,5.54,0,0,1,4.21,6.1,3,3,0,0,1,5,5,3.14,3.14,0,0,1,6.1,4.2,5.73,5.73,0,0,1,8,3.86c1,0,1.37-.06,4-.06s3,0,4,.06a5.61,5.61,0,0,1,1.86.34A3.06,3.06,0,0,1,19.05,5,3.06,3.06,0,0,1,19.8,6.1,5.61,5.61,0,0,1,20.14,8c.05,1,.06,1.37.06,4S20.19,15,20.14,16ZM12,6.87A5.13,5.13,0,1,0,17.14,12,5.12,5.12,0,0,0,12,6.87Zm0,8.46A3.33,3.33,0,1,1,15.33,12,3.33,3.33,0,0,1,12,15.33Z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div>
+              <h4 class="font-bold text-xs sm:text-sm md:text-base mb-3 md:mb-6">Layanan</h4>
+              <ul class="space-y-2 md:space-y-4 text-xs sm:text-sm text-slate-500 transition-colors">
+                <li>Spanduk</li>
+                <li>Stiker</li>
+                <li>Kartu Nama</li>
+                <li>Stempel</li>
+                <li>Banner</li>
+                <li>Outdoor Media</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-bold text-xs sm:text-sm md:text-base mb-3 md:mb-6">Bantuan</h4>
+              <ul class="space-y-2 md:space-y-4 text-xs sm:text-sm text-slate-500">
+                <li>
+                  <a
+                    class="hover:text-primary transition-colors"
+                    href="https://wa.me/6282188579988?text=Halo%20saya%20ingin%20bertanya"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Hubungi Kami</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="pt-5 border-t border-slate-500 text-center text-sm text-slate-500"
+          >
+            <p>© 2026 Turikale Print.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script>
+      const toggleBtn = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuIcon = document.getElementById("menu-icon");
+
+      let isOpen = false;
+
+      toggleBtn.addEventListener("click", () => {
+        isOpen = !isOpen;
+
+        if (isOpen) {
+          mobileMenu.classList.remove("scale-y-0", "opacity-0");
+          mobileMenu.classList.add("scale-y-100", "opacity-100");
+          menuIcon.textContent = "close";
+        } else {
+          mobileMenu.classList.remove("scale-y-100", "opacity-100");
+          mobileMenu.classList.add("scale-y-0", "opacity-0");
+          menuIcon.textContent = "menu";
+        }
+      });
+    </script>
+    <script>
+      const buttons = document.querySelectorAll(".batch-btn");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const batch = this.id === "btnBatch1" ? "batch1" : "batch2";
+
+          // sembunyikan semua card
+          document.querySelectorAll(".batch").forEach((card) => {
+            card.classList.add("hidden");
+          });
+
+          // tampilkan batch yang dipilih
+          document.querySelectorAll("." + batch).forEach((card) => {
+            card.classList.remove("hidden");
+          });
+
+          // reset style tombol
+          buttons.forEach((btn) => {
+            btn.classList.remove(
+              "bg-primary",
+              "text-white",
+              "shadow-lg",
+              "shadow-primary/30",
+            );
+            btn.classList.add(
+              "border",
+              "border-slate-300",
+              "text-slate-600",
+              "bg-white",
+            );
+          });
+
+          // aktifkan tombol yang diklik
+          this.classList.remove(
+            "border",
+            "border-slate-300",
+            "text-slate-600",
+            "bg-white",
+          );
+          this.classList.add(
+            "bg-primary",
+            "text-white",
+            "shadow-lg",
+            "shadow-primary/30",
+          );
+
+          // Reset scroll pos and refresh dots
+          const track = document.getElementById('internGrid');
+          if(track) track.scrollLeft = 0;
+          if(window.refreshInternDots) window.refreshInternDots();
+        });
+      });
+    </script>
+    <script>
+      // ── Scroll Dots Sync Setup ──
+      function setupSwipeDots(trackId, dotsContainerId) {
+        const track = document.getElementById(trackId);
+        const dotsContainer = document.getElementById(dotsContainerId);
+        if (!track || !dotsContainer) return;
+
+        function refreshDots() {
+          dotsContainer.innerHTML = '';
+          // Filter out explicitly hidden slides (for batch sorting)
+          const items = Array.from(track.children).filter(item => !item.classList.contains('hidden'));
+          
+          if (items.length <= 1) return; // Hide dots if not enough items
+          
+          // Generate dots
+          items.forEach((item, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'swipe-dot' + (index === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to slide ' + (index + 1));
+            dot.addEventListener('click', () => {
+              item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            });
+            dotsContainer.appendChild(dot);
+          });
+
+          // Scroll event listener
+          const updateActiveDot = () => {
+            let activeIdx = 0;
+            let minDiff = Infinity;
+            const trackCenter = track.scrollLeft + track.clientWidth / 2;
+            
+            items.forEach((item, idx) => {
+              const itemCenter = item.offsetLeft + item.clientWidth / 2 - track.offsetLeft;
+              const diff = Math.abs(trackCenter - itemCenter);
+              if (diff < minDiff) {
+                minDiff = diff;
+                activeIdx = idx;
+              }
+            });
+
+            Array.from(dotsContainer.children).forEach((dot, idx) => {
+              dot.classList.toggle('active', idx === activeIdx);
+            });
+          };
+
+          // Attach and immediately run state
+          track.addEventListener('scroll', updateActiveDot, { passive: true });
+          setTimeout(updateActiveDot, 50);
+        }
+
+        refreshDots();
+        return refreshDots;
+      }
+
+      // Init on mount
+      setTimeout(() => {
+        setupSwipeDots('pklGrid', 'pklDots');
+        window.refreshInternDots = setupSwipeDots('internGrid', 'internDots');
+      }, 100);
+    </script>
+  </body>
+</html>
